@@ -73,7 +73,7 @@ Nos dados mensais, o Brent não aparece directamente ligado ao câmbio nem às r
 
 - **Excel / Power Query:** recolha e limpeza (API da EIA em JSON, agregação do câmbio e das reservas de diário para mensal, extensão da taxa de juro de decisões para meses).
 - **SQL Server:** base `EconomiaAngola`, com `Dim_Calendario` (144 meses) e `Facto_Indicadores_Economicos` (uma linha por mês). As relações foram medidas sobre variações mensais, em SQL.
-- **Power BI:** dashboard de 4 páginas (Resumo Executivo, Petróleo × Câmbio, Petróleo × Reservas, Petróleo × Taxa de Juro), com um filtro por regime cambial na página 2.
+- **Power BI:** dashboard de 4 páginas (Resumo Executivo, Petróleo × Câmbio, Petróleo × Reservas, Petróleo × Taxa de Juro), com um filtro por regime cambial na página 2. As medidas DAX estão documentadas em [`medidas_dax.md`](medidas_dax.md).
 
 A parte estatística (testes, desfasamentos, limiares, registo de correcções e origem de cada número) está no [documento de metodologia](metodologia_projecto.md).
 
@@ -83,14 +83,15 @@ A parte estatística (testes, desfasamentos, limiares, registo de correcções e
 ├── README.md
 ├── RESUMO_EXECUTIVO.md
 ├── metodologia_projecto.md
+├── medidas_dax.md          medidas e colunas calculadas do dashboard (DAX), com valores de controlo
 ├── sql/                    scripts SQL (esquema, calendário, importação e análises)
-├── dashboard/              ficheiro .pbix e tema do Power BI
 ├── imagens/                capturas do dashboard
 └── dados/
-    └── indicadores_mensais.csv
+    ├── indicadores_mensais.csv    tabela mensal final (entrada do script SQL)
+    └── reservas_fmi_anual.csv     reservas totais do FMI, anuais (2014–2025)
 ```
 
-Os dados pertencem às fontes indicadas acima. O repositório inclui apenas a tabela mensal final, para permitir reproduzir a análise (separador `;`, decimais com vírgula).
+Os dados pertencem às fontes indicadas acima. O repositório inclui apenas a tabela mensal final (144 linhas, de Janeiro de 2014 a Dezembro de 2025), que é a entrada do script SQL, e a série anual das reservas totais do FMI, para permitir reproduzir a análise (separador `;`, decimais com vírgula). O dashboard está publicado no Power BI (ligação no topo).
 
 ## Competências demonstradas
 

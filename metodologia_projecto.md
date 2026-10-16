@@ -150,7 +150,7 @@ Estados: **Verificado** = confirmado em fonte primária ou em várias fontes con
 | Juro real mínimo: −25,1 pp (2016) | Mesma série | Cálculo (valor lido no Power BI: −25,12) |
 | Correlações (secções 6, 7 e 8) | SQL Server, sobre as variações mensais | Cálculo, verificado com valores de controlo |
 | Linhas dez-18, jan-19, nov-19, jul-21, set-22 e jan-23 da tabela de taxas | Transcrição manual de comunicados do CPM | Verificado (confirmadas nos comunicados) |
-| Reservas totais 2014–2020: 27,03 · 23,79 · 23,67 · 17,46 · 15,41 · 16,33 · 13,78 mil milhões USD | FMI, International Financial Statistics, via Banco Mundial | Verificado (Banco Mundial, FI.RES.TOTL.CD; valores exactos: 27.032.344.084 · 23.790.543.425 · 23.672.191.989 · 17.455.327.771 · 15.410.405.365 · 16.334.853.784 · 13.781.988.140 USD) |
+| Reservas totais 2014–2020: 27,03 · 23,79 · 23,67 · 17,46 · 15,41 · 16,33 · 13,78 mil milhões USD | FMI, International Financial Statistics, via Banco Mundial | Verificado (Banco Mundial, FI.RES.TOTL.CD; ficheiro `dados/reservas_fmi_anual.csv`; valores exactos: 27.032.344.084 · 23.790.543.425 · 23.672.191.989 · 17.455.327.771 · 15.410.405.365 · 16.334.853.784 · 13.781.988.140 USD) |
 | Reservas −49% (2014→2020); −12% em 2015 | 13,78 ÷ 27,03 − 1; 23,79 ÷ 27,03 − 1 | Cálculo |
 | Importações −30% em 2015 | 0,88 ÷ 1,26 (reservas ÷ meses de importações, mesma fonte) | Cálculo, aritmético; sem dados directos de importações |
 | Reservas de 31,2 mil milhões USD no início de 2014 | BNA, via Ver Angola (Jun 2018) | Verificado (fonte secundária) |
