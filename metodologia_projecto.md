@@ -1,12 +1,12 @@
 # Metodologia — "Do Barril ao Banco Central: Choques do Brent na Economia Angolana"
 
-*Documento de trabalho, actualizado ao longo do projecto. Serve de base para o resumo executivo final.*
+*Fontes, decisões, testes estatísticos, registo de correcções e origem de cada número do projecto. O resumo das conclusões está no [resumo executivo](RESUMO_EXECUTIVO.md).*
 
 **Dashboard:** [Power BI](https://app.powerbi.com/view?r=eyJrIjoiMmQzZmQ5OWItNWIxOC00N2Y2LThmZGYtZjUzYTQ3NjZiNWM0IiwidCI6IjgyNWI5NmI2LTdhMDAtNDI4Ny05ZmRhLWQ4MWM4ZTJkZmNhYiJ9) · **Repositório:** [GitHub](https://github.com/julianasac/do-barril-ao-banco-central)
 
 ## 1. Objectivo e Perguntas de Negócio
 
-Projecto de portfólio com **dados reais**, sucessor do projecto fictício de logística petrolífera. Analisa a relação entre o preço do petróleo Brent e a economia angolana (câmbio, reservas, política monetária), 2014-2025.
+Projecto de portfólio com **dados reais**. Analisa a relação entre o preço do petróleo Brent e a economia angolana (câmbio, reservas, política monetária), 2014-2025.
 
 **Perguntas de negócio:**
 1. Existe correlação entre o preço do Brent e a taxa de câmbio Kwanza/USD? Com que desfasamento temporal?
@@ -20,12 +20,15 @@ Projecto de portfólio com **dados reais**, sucessor do projecto fictício de lo
 | Preço do Brent | EIA (API oficial, series RBRTE) | Mensal | 2014-2025 | Sem falhas |
 | Câmbio Kwanza/USD | BNA (Excel diário, agregado à média mensal) | Diário→Mensal | 2014-2025 | Sem falhas |
 | Inflação (IPC, var. homóloga) | INE Angola | Mensal | Índice desde Dez/2014; homóloga só a partir de Dez/2015 | Ver secção 3 |
-| Reservas Internacionais | BNA (milhões USD) + FMI via FRED (`AGOBRASSMIMH`, reservas líquidas em meses de importações de bens e serviços) | Mensal / Anual | BNA: Dez/2021-2025. FRED: 2014-2020 (anual, repetido nos 12 meses) | Fonte mista — ver secção 3 |
+| Reservas totais (USD) | FMI, International Financial Statistics, via Banco Mundial (`FI.RES.TOTL.CD`, *Total reserves, includes gold, current US$*) | Anual | 2014-2025 | Ficheiro `dados/reservas_fmi_anual.csv`; usada no dashboard para 2014-2020 |
+| Reservas em meses de importações | FMI, via Banco Mundial (*Total reserves in months of imports*) | Anual | 2014-2020 | Usada para estimar a queda das importações em 2015 (secção 7) |
+| Reservas internacionais do BNA (milhões USD) | BNA (valores diários, agregados à média mensal) | Diário→Mensal | Dez/2021-2025 | Coluna `Reservas_BNA_MilhoesUSD` da tabela mensal |
+| Reservas líquidas em meses de importações (complementar) | FMI via FRED (`AGOBRASSMIMH`, bens e serviços) | Anual, repetido nos 12 meses | 2014-2020 | Coluna `Reservas_FRED_MesesCobertura`; está na base de dados, mas não no dashboard |
 | Taxa de juro directora BNA | Decisões do CPM (tabela compilada manualmente, 30 registos, incluindo reuniões sem alteração) | Eventos (degraus), "esticada" para mensal (último valor em vigor em cada mês) | 2014-2025 | Todas as linhas confirmadas nos comunicados do CPM; ver secção 10 |
 
 ## 3. Decisões Metodológicas e Limitações Assumidas
 
-- **Reservas Internacionais é uma fonte mista**: BNA (valor absoluto, milhões USD) para 2021-2025; FMI via FRED (reservas líquidas em meses de importações — métrica e definição diferentes das do BNA; não comparável em unidades) para 2014-2020. Há ainda um hiato de Jan-Nov/2021, sem dados em nenhuma das duas fontes (a série do BNA só começa em Dez/2021). Documentado como limitação, não erro.
+- **Reservas: duas fontes, analisadas em separado.** Para 2014-2020 usa-se a série anual do FMI em USD (reservas totais, incluindo ouro), que mostra o choque de 2014-2016 em valor absoluto. Para Dez/2021-2025 usa-se a série mensal do BNA, em milhões USD, que permite as correlações mensais. As duas não se juntam numa só série: as definições diferem e os níveis também (em 2021, 14,5 mil milhões USD no FMI contra 15,5 no BNA; em 2025, 13,5 contra 15,4). A série do FMI cobre também 2021-2025, o que permite confirmar que a estabilidade recente não é um efeito da fonte (variação de −6% no FMI e de −0,5% no BNA). Não há dados mensais entre Jan e Nov/2021. A série do FRED (reservas líquidas em meses de importações) fica na base de dados como complementar, mas mede outra coisa (um rácio) e não entra no dashboard.
 - **Inflação**: usa-se a variação homóloga (não mensal nem acumulada) do IPC **nacional** do INE (não o índice provincial de Luanda, frequentemente citado em notícias — os dois divergem ligeiramente, o que é esperado).
 - **Câmbio**: agregado de diário para mensal por **média do mês** (não último dia útil), para consistência com as restantes séries mensais.
 - **Taxa de juro**: compilada de comunicados/notícias e depois confirmada com dados oficiais directos do BNA quando o portal voltou a funcionar. Corrigido um erro de datação (9,25% em Jan/2014, um corte para 8,75% algures antes de Jul/2014, sem data exacta encontrada nas fontes).
@@ -121,12 +124,14 @@ Nos dados mensais não aparece uma relação linear directa entre o Brent e o c�
 | 15 Out 2026 | Pergunta 3: desfasamento de 3 meses da inflação com N errado (0,118 com N = 120 passou a 0,126 com N = 117) | Feito |
 | 15 Out 2026 | Linhas de 2018–2023 da tabela de taxas (dez-18, jan-19, nov-19, jul-21, set-22, jan-23) confirmadas nos comunicados do CPM | Feito (confirmado em 15 Out 2026) |
 | 15 Out 2026 | Script SQL consolidado (`analise_economia_angola.sql`) corrido de ponta a ponta; valores de controlo confirmados (121 meses com inflação, 100 com taxa abaixo, 21 com taxa igual ou acima, mínimo −25,12 pp) | Feito |
-| 15 Out 2026 | Título do projecto: "Da Refinaria…" passa a "Do Barril ao Banco Central" (o projecto trata do preço do crude, não da refinação) | Feito nos documentos; pendente no repositório, no título da página 1 do dashboard e no link |
-| 15 Out 2026 | Reservas apresentadas como "estáveis" sem o contexto de 2014–2020 (reservas totais −49% entre 2014 e 2020). Corrigido no README, resumo executivo e secção 7 | Feito nos documentos; pendente no dashboard (substituir o gráfico da cobertura pelo das reservas totais em USD) |
+| 15 Out 2026 | Título do projecto: "Da Refinaria…" passa a "Do Barril ao Banco Central" (o projecto trata do preço do crude, não da refinação) | Feito (documentos, repositório, dashboard e link, 16 Out 2026) |
+| 15 Out 2026 | Reservas apresentadas como "estáveis" sem o contexto de 2014–2020 (reservas totais −49% entre 2014 e 2020). Corrigido no README, resumo executivo e secção 7 | Feito (documentos e dashboard: a página 3 mostra as reservas totais em USD, 16 Out 2026) |
 | 15 Out 2026 | Frase "isto afasta a hipótese do regime cambial" era demasiado forte: o teste só vale para o período livre | Feito |
 | 15 Out 2026 | Omissão do volume exportado (produção caiu de ~1,7–1,8 para ~1,1 mb/d) | Feito (limitação e síntese) |
 | 15 Out 2026 | Valores do FMI (IFS) da secção 7 foram recolhidos num agregador (IndexMundi) | Feito: confirmado com o ficheiro do Banco Mundial (FI.RES.TOTL.CD), 16 Out 2026 |
 | 16 Out 2026 | Testes de robustez (sem Abr–Mai/2020; Spearman): −0,097 e −0,109, contra −0,130 | Feito |
+| 16 Out 2026 | CSV mensal: cabeçalho `Brent.Brent_USD_Barril` (resto do Power Query) passa a `Brent_USD_Barril`, como o script SQL espera; quebras de linha normalizadas | Feito |
+| 16 Out 2026 | Secções 2 e 3 actualizadas com a série do FMI em USD (2014–2025) | Feito |
 
 ## 11. Rastreio dos números do dashboard e do README
 
