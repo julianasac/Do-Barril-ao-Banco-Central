@@ -2,6 +2,8 @@
 
 **Do Barril ao Banco Central: Choques do Brent na Economia Angolana (2014–2025)**
 
+**Dashboard:** [Power BI](https://app.powerbi.com/view?r=eyJrIjoiMmQzZmQ5OWItNWIxOC00N2Y2LThmZGYtZjUzYTQ3NjZiNWM0IiwidCI6IjgyNWI5NmI2LTdhMDAtNDI4Ny05ZmRhLWQ4MWM4ZTJkZmNhYiJ9) · **Repositório:** [GitHub](https://github.com/julianasac/do-barril-ao-banco-central)
+
 ## Contexto e objectivo
 
 Angola vive das exportações de petróleo. Este projecto analisa, com dados mensais reais de 2014 a 2025, se o preço do Brent se reflecte no câmbio, nas reservas internacionais e na taxa de juro do BNA.

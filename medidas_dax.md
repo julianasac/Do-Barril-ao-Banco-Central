@@ -2,6 +2,8 @@
 
 Este documento reúne as medidas e colunas calculadas do dashboard em Power BI. Cada medida traz o seu **valor de controlo**, calculado a partir da tabela mensal, para qualquer pessoa poder confirmar que o modelo funciona.
 
+**Dashboard:** [Power BI](https://app.powerbi.com/view?r=eyJrIjoiMmQzZmQ5OWItNWIxOC00N2Y2LThmZGYtZjUzYTQ3NjZiNWM0IiwidCI6IjgyNWI5NmI2LTdhMDAtNDI4Ny05ZmRhLWQ4MWM4ZTJkZmNhYiJ9) · **Repositório:** [GitHub](https://github.com/julianasac/do-barril-ao-banco-central)
+
 ## Modelo de dados
 
 | Tabela | Conteúdo |

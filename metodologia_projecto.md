@@ -2,6 +2,8 @@
 
 *Documento de trabalho, actualizado ao longo do projecto. Serve de base para o resumo executivo final.*
 
+**Dashboard:** [Power BI](https://app.powerbi.com/view?r=eyJrIjoiMmQzZmQ5OWItNWIxOC00N2Y2LThmZGYtZjUzYTQ3NjZiNWM0IiwidCI6IjgyNWI5NmI2LTdhMDAtNDI4Ny05ZmRhLWQ4MWM4ZTJkZmNhYiJ9) · **Repositório:** [GitHub](https://github.com/julianasac/do-barril-ao-banco-central)
+
 ## 1. Objectivo e Perguntas de Negócio
 
 Projecto de portfólio com **dados reais**, sucessor do projecto fictício de logística petrolífera. Analisa a relação entre o preço do petróleo Brent e a economia angolana (câmbio, reservas, política monetária), 2014-2025.

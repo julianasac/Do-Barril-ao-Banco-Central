@@ -6,7 +6,7 @@ Análise de dados reais (2014–2025) sobre a ligação entre o preço do petró
 
 **Resumo executivo:** [RESUMO_EXECUTIVO.md](RESUMO_EXECUTIVO.md) · **Metodologia:** [metodologia_projecto.md](metodologia_projecto.md)
 
-**Dashboard interactivo:** [Power BI](https://app.powerbi.com/view?r=eyJrIjoiMjViNDJhN2UtNzRkYS00MmRiLTk1ZWMtMzU1ODUxNTk1MjllIiwidCI6IjgyNWI5NmI2LTdhMDAtNDI4Ny05ZmRhLWQ4MWM4ZTJkZmNhYiJ9&pageName=27261944536008409d36)
+**Dashboard interactivo:** [Power BI](https://app.powerbi.com/view?r=eyJrIjoiMmQzZmQ5OWItNWIxOC00N2Y2LThmZGYtZjUzYTQ3NjZiNWM0IiwidCI6IjgyNWI5NmI2LTdhMDAtNDI4Ny05ZmRhLWQ4MWM4ZTJkZmNhYiJ9)
 
 ## A pergunta
 
